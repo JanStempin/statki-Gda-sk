@@ -218,36 +218,37 @@ import os
 
 ##### lista żeby komputer nie powtarzał już strzelanych pól ####
 juz_strzelane = []
+
 while True:
-    print(pola_gracza)
     print(p_statki)
+    print(pola_gracza)
     czy_przerwac_gracz = 0
     czy_przerwac_komputer = 0
-    if len(pola_gracza[0]) == 0:
-        czy_przerwac_gracz+=1
-    if len(pola_gracza[1]) == 0:
-        czy_przerwac_gracz+=1
-    if len(pola_gracza[2]) == 0:
-        czy_przerwac_gracz+=1
-    if len(pola_gracza[3]) == 0:
-        czy_przerwac_gracz+=1
-    if len(pola_gracza[4]) == 0:
-        czy_przerwac_gracz+=1
-    if len(pola_gracza[5]) == 0:
-        czy_przerwac_gracz+=1
     if len(p_statki[0]) == 0:
-        czy_przerwac_komputer+=1
-    if len(p_statki[0]) == 0:
-        czy_przerwac_komputer+=1
+        czy_przerwac_gracz+=1
     if len(p_statki[1]) == 0:
-        czy_przerwac_komputer+=1
+        czy_przerwac_gracz+=1
     if len(p_statki[2]) == 0:
         czy_przerwac_gracz+=1
     if len(p_statki[3]) == 0:
-        czy_przerwac_komputer+=1
+        czy_przerwac_gracz+=1
     if len(p_statki[4]) == 0:
-        czy_przerwac_komputer+=1
+        czy_przerwac_gracz+=1
     if len(p_statki[5]) == 0:
+        czy_przerwac_gracz+=1
+    if len(pola_gracza[0]) == 0:
+        czy_przerwac_komputer+=1
+    if len(pola_gracza[0]) == 0:
+        czy_przerwac_komputer+=1
+    if len(pola_gracza[1]) == 0:
+        czy_przerwac_komputer+=1
+    if len(pola_gracza[2]) == 0:
+        czy_przerwac_gracz+=1
+    if len(pola_gracza[3]) == 0:
+        czy_przerwac_komputer+=1
+    if len(pola_gracza[4]) == 0:
+        czy_przerwac_komputer+=1
+    if len(pola_gracza[5]) == 0:
         czy_przerwac_komputer+=1
     if czy_przerwac_gracz == 5:
         break
@@ -258,40 +259,40 @@ while True:
         y_s = int(input("podaj wsp y do strzlu: "))
         os.system("cls")
         strzal = [x_s, y_s]
-        if strzal in pola_gracza[0]:
+        if strzal in p_statki[0]:
             print("TAK")
-            pola_gracza[0].remove(strzal)
-            if len(pola_gracza[0]) == 0:
+            p_statki[0].remove(strzal)
+            if len(p_statki[0]) == 0:
                 print("statek poszedł na dno!")
  
-        elif strzal in pola_gracza[1]:
+        elif strzal in p_statki[1]:
             print("TAK")
-            pola_gracza[1].remove(strzal)
-            if len(pola_gracza[1]) == 0:
+            p_statki[1].remove(strzal)
+            if len(p_statki[1]) == 0:
                 print("statek poszedł na dno!")
 
-        elif strzal in pola_gracza[2]:
+        elif strzal in p_statki[2]:
             print("TAK")
-            pola_gracza[2].remove(strzal)
-            if len(pola_gracza[2]) == 0:
+            p_statki[2].remove(strzal)
+            if len(p_statki[2]) == 0:
                 print("statek poszedł na dno!")
 
-        elif strzal in pola_gracza[3]:
+        elif strzal in p_statki[3]:
             print("TAK")
-            pola_gracza[3].remove(strzal)
-            if len(pola_gracza[3]) == 0:
+            p_statki[3].remove(strzal)
+            if len(p_statki[3]) == 0:
                 print("statek poszedł na dno!")
  
-        elif strzal in pola_gracza[4]:
+        elif strzal in p_statki[4]:
             print("TAK")
-            pola_gracza[4].remove(strzal)
-            if len(pola_gracza[4]) == 0:
+            p_statki[4].remove(strzal)
+            if len(p_statki[4]) == 0:
                 print("statek poszedł na dno!")
   
-        elif strzal in pola_gracza[5]:
+        elif strzal in p_statki[5]:
             print("TAK")
-            pola_gracza[5].remove(strzal)
-            if len(pola_gracza[5]) == 0:
+            p_statki[5].remove(strzal)
+            if len(p_statki[5]) == 0:
                 print("statek poszedł na dno!")
    
         else:
@@ -310,40 +311,40 @@ while True:
                 juz_strzelane.append(strzal_komputera)
                 break
         print(juz_strzelane)
-        if strzal_komputera in p_statki[0]:
+        if strzal_komputera in pola_gracza[0]:
             print("Trafiony!")
-            p_statki[0].remove(strzal_komputera)
-            if len(p_statki[0]) == 0:
+            pola_gracza[0].remove(strzal_komputera)
+            if len(pola_gracza[0]) == 0:
                 print("statek poszedł na dno!")
     
-        elif strzal_komputera in p_statki[1]:
+        elif strzal_komputera in pola_gracza[1]:
             print("Trafiony!")
-            p_statki[1].remove(strzal_komputera)
-            if len(p_statki[1]) == 0:
+            pola_gracza[1].remove(strzal_komputera)
+            if len(pola_gracza[1]) == 0:
                 print("statek poszedł na dno!")
    
-        elif strzal_komputera in p_statki[2]:
+        elif strzal_komputera in pola_gracza[2]:
             print("Trafiony!")
-            p_statki[2].remove(strzal_komputera)
-            if len(p_statki[2]) == 0:
+            pola_gracza[2].remove(strzal_komputera)
+            if len(pola_gracza[2]) == 0:
                 print("statek poszedł na dno!")
 
-        elif strzal_komputera in p_statki[3]:
+        elif strzal_komputera in pola_gracza[3]:
             print("Trafiony!")
-            p_statki[3].remove(strzal_komputera)
-            if len(p_statki[3]) == 0:
+            pola_gracza[3].remove(strzal_komputera)
+            if len(pola_gracza[3]) == 0:
                 print("statek poszedł na dno!")
     
-        elif strzal_komputera in p_statki[4]:
+        elif strzal_komputera in pola_gracza[4]:
             print("Trafiony!")
-            p_statki[4].remove(strzal_komputera)
-            if len(p_statki[4]) == 0:
+            pola_gracza[4].remove(strzal_komputera)
+            if len(pola_gracza[4]) == 0:
                 print("statek poszedł na dno!")
  
-        elif strzal_komputera in p_statki[5]:
+        elif strzal_komputera in pola_gracza[5]:
             print("Trafiony!")
-            p_statki[5].remove(strzal_komputera)
-            if len(p_statki[5]) == 0:
+            pola_gracza[5].remove(strzal_komputera)
+            if len(pola_gracza[5]) == 0:
                 print("statek poszedł na dno!")
    
         else:
