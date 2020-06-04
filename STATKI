@@ -1,6 +1,8 @@
 ### próba rozwiązania kodu do statków na podstawie klas i list###
 import random
 import os
+from tkinter import *
+from tkinter import messagebox
 
 class statek:
     ile_masztow = 0
@@ -111,3 +113,239 @@ print(moj_statek2_1.pola_masztow)
 
 ##### pokazuje pozcje pól nieaktywnych #####
 print(kukuryku)
+
+#### losowanie statków komputer ####
+import random
+#### losujemy pola statków dla komputera ####
+statki = [5,4,3,3,2,2]
+p_statki = []
+pola_nieaktywne = []
+pola_statku = []
+pola_wszystkich = []
+for i in range(len(statki)):
+    ilemaszt = statki[i]
+    print("to jest ", ilemaszt, "masztowiec")
+    print("podejście")
+    while True:
+        pole_startowe = []
+        x = random.randint(1,10)
+        y = random.randint(1,10)
+        pole_startowe = [x,y]
+        print(pole_startowe)
+        if pole_startowe in pola_nieaktywne:
+            True
+            print("sorry, wybrane pole jest już w liście")
+        else:
+            czy_wpada = 0
+            pion_poziom = random.randint(1,2)
+            print(pion_poziom)
+            pola_statku = []
+            k = 0
+            ciag_pol_k = []
+            pola_obok=[]
+            if pion_poziom ==1:
+                print("wylosowano pion")
+                for j in range(1,ilemaszt+1):
+                    pola_statku.append([x,y+k])
+                    ####k+=1#####
+                    if y+k > 10:
+                        czy_wpada +=1
+                    else: 
+                        czy_wpada+=0
+                    k+=1
+                ks = 0
+                for s in pola_statku: 
+                    ciag_pol_k.append(pola_statku[ks][1])
+                    ks+=1
+                min_k = min(ciag_pol_k)
+                print(min_k)
+                max_k = max(ciag_pol_k)
+                print(max_k)
+                for i in range(min_k - 1, max_k + 2):
+                    for j in range(pola_statku[0][0] - 1, pola_statku[0][0]+2):
+                        pola_obok.append([j,i])
+            else: 
+                print("wylosowano poziom")
+                for j in range(1,ilemaszt+1):
+                    pola_statku.append([x+k,y])
+                    ####k+=1#####
+                    if x+k > 10:
+                        czy_wpada +=1
+                    else: 
+                        czy_wpada+=0
+                    k+=1
+                ks = 0
+                for s in pola_statku: 
+                    ciag_pol_k.append(pola_statku[ks][0])
+                    ks+=1
+                min_k = min(ciag_pol_k)
+                print(min_k)
+                max_k = max(ciag_pol_k)
+                print(max_k)
+                for i in range(pola_statku[0][1] - 1, pola_statku[0][1]+2):
+                    for j in range(min_k - 1, max_k + 2):
+                        pola_obok.append([j,i])
+            for k in pola_statku:
+                if k in pola_nieaktywne:
+                    czy_wpada +=1
+                else:
+                    czy_wpada+=0
+            if czy_wpada >0:
+                True
+            else:
+                pola_nieaktywne.extend(pola_obok)
+                p_statki.append(pola_statku)
+                break
+print("pikobelo")
+print("pola już nieaktywne: ",pola_nieaktywne)
+print("pola statku: ", p_statki)
+
+print(len(p_statki[0]))
+
+import random
+import os
+#### Strzelanie i rozstrzyganie gry ####
+
+komp = [[[1, 6], [2, 6], [3, 6], [4, 6], [5, 6]], [[9, 2], [9, 3], [9, 4], [9, 5]], [[3, 1], [4, 1], [5, 1]], [[2, 3], [3, 3], [4, 3]], [[3, 9], [4, 9]], [[8, 10], [9, 10]]]
+ast = [[[1, 6], [2, 6], [3, 6], [4, 6], [5, 6]], [[9, 2], [9, 3], [9, 4], [9, 5]], [[3, 1], [4, 1], [5, 1]], [[2, 3], [3, 3], [4, 3]], [[3, 9], [4, 9]], [[8, 10], [9, 10]]]
+
+#### te listy do zastapienia ####
+
+print(len(ast))
+
+
+##### lista żeby komputer nie powtarzał już strzelanych pól ####
+juz_strzelane = []
+while True:
+    czy_przerwac_gracz = 0
+    czy_przerwac_komputer = 0
+    if len(ast[0]) == 0:
+        czy_przerwac_gracz+=1
+    if len(ast[1]) == 0:
+        czy_przerwac_gracz+=1
+    if len(ast[2]) == 0:
+        czy_przerwac_gracz+=1
+    if len(ast[3]) == 0:
+        czy_przerwac_gracz+=1
+    if len(ast[4]) == 0:
+        czy_przerwac_gracz+=1
+    if len(ast[5]) == 0:
+        czy_przerwac_gracz+=1
+    if len(komp[0]) == 0:
+        czy_przerwac_komputer+=1
+    if len(komp[0]) == 0:
+        czy_przerwac_komputer+=1
+    if len(komp[1]) == 0:
+        czy_przerwac_komputer+=1
+    if len(komp[2]) == 0:
+        czy_przerwac_gracz+=1
+    if len(komp[3]) == 0:
+        czy_przerwac_komputer+=1
+    if len(komp[4]) == 0:
+        czy_przerwac_komputer+=1
+    if len(komp[5]) == 0:
+        czy_przerwac_komputer+=1
+    if czy_przerwac_gracz == 5:
+        break
+    if czy_przerwac_komputer == 5:
+        break
+    else:
+        x_s = int(input("podaj wsp x do strzlu: "))
+        y_s = int(input("podaj wsp y do strzlu: "))
+        os.system("cls")
+        strzal = [x_s, y_s]
+        if strzal in ast[0]:
+            print("TAK")
+            ast[0].remove(strzal)
+            if len(ast[0]) == 0:
+                print("statek poszedł na dno!")
+ 
+        elif strzal in ast[1]:
+            print("TAK")
+            ast[1].remove(strzal)
+            if len(ast[1]) == 0:
+                print("statek poszedł na dno!")
+
+        elif strzal in ast[2]:
+            print("TAK")
+            ast[2].remove(strzal)
+            if len(ast[2]) == 0:
+                print("statek poszedł na dno!")
+
+        elif strzal in ast[3]:
+            print("TAK")
+            ast[3].remove(strzal)
+            if len(ast[3]) == 0:
+                print("statek poszedł na dno!")
+ 
+        elif strzal in ast[4]:
+            print("TAK")
+            ast[4].remove(strzal)
+            if len(ast[4]) == 0:
+                print("statek poszedł na dno!")
+  
+        elif strzal in ast[5]:
+            print("TAK")
+            ast[5].remove(strzal)
+            if len(ast[5]) == 0:
+                print("statek poszedł na dno!")
+   
+        else:
+            print("pudło!")
+
+        print("teaz strzela komputer!!!!!!!!!!!!!!!!!!!!!")
+
+        while True:
+            x_komp = random.randint(1,10)
+            y_komp = random.randint(1,10)
+            strzal_komputera = [x_komp,y_komp]
+            print(strzal_komputera)
+            if strzal_komputera in juz_strzelane:
+                True
+            else:
+                juz_strzelane.append(strzal_komputera)
+                break
+        print(juz_strzelane)
+        if strzal_komputera in komp[0]:
+            print("Trafiony!")
+            komp[0].remove(strzal_komputera)
+            if len(komp[0]) == 0:
+                print("statek poszedł na dno!")
+    
+        elif strzal_komputera in komp[1]:
+            print("Trafiony!")
+            komp[1].remove(strzal_komputera)
+            if len(komp[1]) == 0:
+                print("statek poszedł na dno!")
+   
+        elif strzal_komputera in komp[2]:
+            print("Trafiony!")
+            komp[2].remove(strzal_komputera)
+            if len(komp[2]) == 0:
+                print("statek poszedł na dno!")
+
+        elif strzal_komputera in komp[3]:
+            print("Trafiony!")
+            komp[3].remove(strzal_komputera)
+            if len(komp[3]) == 0:
+                print("statek poszedł na dno!")
+    
+        elif strzal_komputera in komp[4]:
+            print("Trafiony!")
+            komp[4].remove(strzal_komputera)
+            if len(komp[4]) == 0:
+                print("statek poszedł na dno!")
+ 
+        elif strzal_komputera in komp[5]:
+            print("Trafiony!")
+            komp[5].remove(strzal_komputera)
+            if len(komp[5]) == 0:
+                print("statek poszedł na dno!")
+   
+        else:
+            print("pudło!")
+    
+if czy_przerwac_gracz == 5:
+    print("wygrał komputer!")
+elif czy_przerwac_komputer == 5:
+    print("wygrałeś!")
