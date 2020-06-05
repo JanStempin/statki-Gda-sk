@@ -1,0 +1,66 @@
+#### PLANSZE "STATKI" (za pomocą Label) i "STRZAŁY" (za pomocą Radiobutton) #####
+
+from tkinter import *
+
+def reakcja(i, j):
+    strzal = [i, j]
+    print(strzal)
+
+glowneOkno = Tk()
+glowneOkno.geometry("1005x450")
+trafione = [1, 2], [3, 4]
+litery = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+cyfry = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+##### PLANSZA 1
+for i in range(1, 11):
+    literka = litery[i - 1]
+    for j in range(1, 11):
+        cyferka = cyfry[j - 1]
+        czy_trafiony = [i, j]
+        if czy_trafiony in trafione:
+            pola = literka, cyferka
+            przycisk = Label(glowneOkno, text=pola, fg="blue", bg = "light green", height = 2, width=5)
+            przycisk.grid(row=i, column=j)
+        else:
+            pola = literka, cyferka
+            przycisk = Label(glowneOkno, text=pola, fg="red", bg = "light blue", height = 2,  width=5 )
+            przycisk.grid(row=i, column=j)
+
+##### LABEL 1 - tytuł planszy gracza
+plansza1 = Label(glowneOkno, text = "TWOJE", width = 5)
+plansza1.grid(row = 12 , column = 5)
+plansza2 = Label(glowneOkno, text = "STATKI", width = 5)
+plansza2.grid(row = 12 , column = 6)
+
+##### LABEL Z PRZERWĄ
+przerwa = Label(glowneOkno, text = "   ")
+przerwa.grid(row = 11, column = 11)
+
+##### LABEL 2 - tytuł planszy przeciwnika
+plansza3 = Label(glowneOkno, text = "TWOJE" , width = 5)
+plansza3.grid(row = 12 , column = 16)
+plansza3 = Label(glowneOkno, text = "STRZAŁY", width = 5)
+plansza3.grid(row = 12 , column = 17)
+
+
+##### PLANSZA 2
+y = 0
+for k in range(1, 11):
+    literka = litery[k - 1]
+    for l in range(12, 22):
+        cyferka = cyfry[l - 12]
+        czy_trafiony = [k, l - 11]
+        if czy_trafiony in trafione:
+            pola = literka, cyferka
+            przycisk = Radiobutton(glowneOkno, text=pola, fg="blue", background = "pink", height = 2, width=5)
+            przycisk.grid(row=k, column=l)
+        else:
+            pierwsza = k
+            druga = l
+            pola = literka, cyferka
+            przycisk = Radiobutton(glowneOkno, text=pola, fg="magenta", background = "pink", height = 2, width=5, value = y, command=reakcja(pierwsza, druga))
+            przycisk.grid(row=k, column=l)
+        y += 1
+
+glowneOkno.mainloop()
